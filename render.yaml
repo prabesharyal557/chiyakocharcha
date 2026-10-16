@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: chiya-ko-charcha
+    runtime: static
+    buildCommand: echo 'Static site ready'
+    staticPublishPath: dist
+    autoDeploy: true
