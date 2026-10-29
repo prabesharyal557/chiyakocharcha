@@ -7,15 +7,43 @@ window.handleAddToCart=(button,name,price)=>addBag(name,price);
 const escapeText=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function customPrice(){return currentCustomItem.basePrice+[currentCustomItem.selectedA,currentCustomItem.selectedB].reduce((n,s)=>n+Number((s.match(/\(\+(\d+)\)/)||[])[1]||0),0)}
 document.addEventListener('change',e=>{if(e.target.name==='optA'||e.target.name==='optB'){const el=document.getElementById('modalCalculatedTotal');if(el)el.textContent='NPR '+customPrice()}});
-document.querySelector('.nav-toggle')?.addEventListener('click',e=>{let nav=document.querySelector('.site-nav'),open=nav.classList.toggle('open');e.currentTarget.setAttribute('aria-expanded',String(open))});
+const navToggle=document.querySelector('.nav-toggle'),siteNav=document.querySelector('.site-nav');
+function closeNavigation(restoreFocus=false){siteNav?.classList.remove('open');navToggle?.setAttribute('aria-expanded','false');navToggle?.setAttribute('aria-label','Open navigation');if(restoreFocus)navToggle?.focus()}
+navToggle?.setAttribute('aria-label','Open navigation');
+navToggle?.addEventListener('click',()=>{const open=siteNav.classList.toggle('open');navToggle.setAttribute('aria-expanded',String(open));navToggle.setAttribute('aria-label',open?'Close navigation':'Open navigation')});
+siteNav?.addEventListener('click',e=>{if(e.target.closest('a'))closeNavigation()});
+document.addEventListener('click',e=>{if(!e.target.closest('.site-header'))closeNavigation()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&siteNav?.classList.contains('open'))closeNavigation(true)});
+matchMedia('(min-width:1200px)').addEventListener('change',()=>closeNavigation());
 const page=location.pathname.split('/').pop()||'index.html';document.querySelectorAll('.site-nav a').forEach(a=>{if(a.getAttribute('href')===page){a.classList.add('active');a.setAttribute('aria-current','page')}});
 document.querySelectorAll('a[href="#"]').forEach(a=>{let text=a.textContent.toLowerCase();a.href=text.includes('privacy')?'privacy.html':text.includes('terms')?'terms.html':text.includes('staff')?'staff.html':text.includes('gallery')?'gallery.html':text.includes('story')?'about.html':'menu.html'});
 // Keep photo submission honest: a local preview cannot send photos to the café.
 window.handlePhotoSubmit=function(e){e.preventDefault();const status=document.getElementById('uploadStatusMsg');status.textContent='Photo preview only. Please contact the café to share your photo.';status.classList.remove('hidden')};
 window.openPrintModal=()=>window.print();window.openWalkinModal=()=>location.assign('menu.html');
 document.querySelectorAll('img').forEach(i=>{i.loading='lazy';i.decoding='async';i.addEventListener('error',()=>{i.classList.add('image-fallback');i.alt=i.alt||'Chiya ko Charcha café';i.style.minHeight='100px'},{once:true})});document.querySelector('main img')?.setAttribute('loading','eager');
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelector('.site-nav')?.classList.remove('open');document.querySelectorAll('[id$="Modal"]').forEach(m=>m.classList.add('hidden'));document.body.style.overflow=''}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('[id$="Modal"]').forEach(m=>m.classList.add('hidden'));document.body.style.overflow=''}});
 updateBag();
+// Keep keyboard focus inside an open overlay and return it to its trigger.
+document.querySelectorAll('[id$="Modal"]').forEach(modal=>{
+ let trigger;
+ modal.setAttribute('role','dialog');modal.setAttribute('aria-modal','true');
+ if(modal.id==='customizeModal'){
+  modal.setAttribute('aria-labelledby','modalItemTitle');
+  modal.querySelector('button')?.setAttribute('aria-label','Close customization');
+ }
+ const focusable=()=>[...modal.querySelectorAll('a[href],button,input,select,textarea,[tabindex="0"]')].filter(e=>!e.disabled&&e.getClientRects().length);
+ new MutationObserver(()=>{
+  if(!modal.classList.contains('hidden')){
+   if(!trigger){trigger=document.activeElement;requestAnimationFrame(()=>focusable()[0]?.focus())}
+  }else if(trigger){const previous=trigger;trigger=null;previous?.focus()}
+ }).observe(modal,{attributes:true,attributeFilter:['class']});
+ modal.addEventListener('keydown',e=>{
+  if(e.key!=='Tab')return;
+  const items=focusable(),first=items[0],last=items.at(-1);
+  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last?.focus()}
+  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first?.focus()}
+ });
+});
 const app=document.getElementById('checkoutApp');
 if(app){
  const bag=readBag();
