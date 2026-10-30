@@ -4,7 +4,8 @@
 .pos-controls input,.pos-controls select{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid #d9c9b7;border-radius:12px;background:#fffdf8;font:inherit;min-height:48px}
 .pos-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
 .pos-item{overflow:hidden;background:#fffdf8;border:1px solid #e3d6c7;border-radius:20px}
-.pos-item-photo{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;background:#f8f8f8}
+/* Match the supplied portrait photos; wide frames made dishes look tiny. */
+.pos-item-photo{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;object-position:center;background:#f8f8f8}
 .pos-item-body{padding:24px}
 .pos-item h2{font:700 21px/1.4 Georgia,serif;margin:12px 0 24px}
 .pos-item-footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}

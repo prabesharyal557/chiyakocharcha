@@ -4,6 +4,8 @@
 
 Photos are assigned by an explicit POS item ID, exact item name and category. If an item is renamed or moved to a different category, its photo is withheld until reviewed. No category-level or similar-name fallback is used.
 
+Menu photos use consistent portrait frames with containment, so the website displays each complete uploaded image without extra cropping. The Hakka noodles and Keema noodles source photos already cut off part of the plate at the right edge; replacement originals are needed to show those dishes completely.
+
 ## Still missing or needing confirmation
 
 - **BEER:** Carlsberg beer, Gorkha beer, Tuborg beer.
