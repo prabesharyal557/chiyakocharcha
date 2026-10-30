@@ -1,0 +1,15 @@
+integrations/
+screenshots/
+*.zip
+sajilo-integration/*.before
+sajilo-integration/cloudflare-worker.ts
+sajilo-integration/app.js
+sajilo-integration/sw.js
+sajilo-integration/sync-cloudflare-assets.mjs
+*-results.json
+wire-*.cjs
+augment-tests.cjs
+polish-integration.cjs
+finish-connection.cjs
+current-connection.test.mjs
+preview.cjs

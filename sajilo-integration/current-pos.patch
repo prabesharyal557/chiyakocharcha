@@ -1,0 +1,134 @@
+diff --git a/cloudflare-worker.ts b/cloudflare-worker.ts
+index b2cea3c..ba7dbe5 100644
+--- a/cloudflare-worker.ts
++++ b/cloudflare-worker.ts
+@@ -1,3 +1,4 @@
++import {websitePublic,websiteInbox,WebsiteOrderError} from "./website-store.ts";
+ import {publicFoodPhoto} from "./qr-card-design.ts";
+ import {publicAdminNotFound} from "./public-admin-route.js";
+ import {qrCustomerSync,syncExistingQrCustomers,qrCustomerListInfo,qrCustomerDetailInfo} from "./qr-customer-sync.ts";
+@@ -1765,6 +1766,12 @@ export class RestaurantCoordinator extends DurableObject<Env> {
+       if (path === "/api/bootstrap" && request.method === "GET")
+         return json({ setup: false });
+       const payload = request.method === "POST" ? await parseBody(request) : {};
++      if(path.startsWith('/api/public/')) {
++        requireThat((this.env.RESTAURANT_CODE||'101')==='101','Website ordering is not available for this restaurant.',404);
++        const menuState=await this.state({...emptySelection,menuIds:undefined});
++        return json(await websitePublic(request,this.env.DB,this.ctx.storage,menuState,payload),200,{'Cache-Control':'no-store'});
++      }
++
+       if (path.startsWith('/api/guest/') || path.startsWith('/api/qr/')) {
+         requireThat(qrDemoEnabled(this.env.RESTAURANT_CODE || '101'), 'Customer QR ordering is unavailable for this restaurant.',404);
+         const photoPrefix='/api/guest/photo/'+(this.env.RESTAURANT_CODE || '101')+'/';
+@@ -1946,6 +1953,12 @@ export class RestaurantCoordinator extends DurableObject<Env> {
+           ? await this.mutationState(payload.action, payload.payload || {})
+           : await this.state(v2 ? operationalSelection : undefined);
+       const user = await this.account(request, state);
++      if(path==='/api/website/orders'||path==='/api/website/status'){
++        requireThat((this.env.RESTAURANT_CODE||'101')==='101','Website inbox is not available for this restaurant.',404);
++        requireThat((path.endsWith('/orders')&&request.method==='GET')||(path.endsWith('/status')&&request.method==='POST'),'Method not allowed.',405);
++        return json(await websiteInbox(this.env.DB,user,path.endsWith('/status')?payload:undefined),200,{'Cache-Control':'no-store'});
++      }
++
+       if (
+         user.mustChangePassword &&
+         path === "/api/action" &&
+@@ -2481,7 +2494,7 @@ export class RestaurantCoordinator extends DurableObject<Env> {
+     } catch (error) {
+       if(error instanceof Error && error.message.includes("qr_safe_commit")) error=new QrError("The table, menu or bill changed. Review the latest details before confirming again.",409);
+       const known =
+-        error instanceof QrError ||
++        error instanceof WebsiteOrderError || error instanceof QrError ||
+         error instanceof HttpError ||
+         error instanceof CancellationError ||
+         error instanceof InvoiceError ||
+@@ -2541,7 +2554,7 @@ function secureHeaders(response: Response) {
+ }
+ function cors(request: Request, response: Response) {
+   const origin = request.headers.get("Origin") || "";
+-  if (allowedMobileOrigins.has(origin)) {
++  if (allowedMobileOrigins.has(origin) || (new URL(request.url).pathname.startsWith('/api/public/') && origin==='https://chiya-ko-charcha.onrender.com')) {
+     response.headers.set("Access-Control-Allow-Origin", origin);
+     response.headers.set("Access-Control-Allow-Credentials", "true");
+     response.headers.append("Vary", "Origin");
+@@ -2557,8 +2570,9 @@ export default {
+     const url = new URL(request.url);
+     if (url.pathname.startsWith("/api/")) {
+       const origin = request.headers.get("Origin");
++      const websiteOrigin=url.pathname.startsWith('/api/public/')&&origin==='https://chiya-ko-charcha.onrender.com';
+       if (request.method === "OPTIONS") {
+-        if (!origin || !allowedMobileOrigins.has(origin))
++        if (!origin || (!allowedMobileOrigins.has(origin)&&!websiteOrigin))
+           return secureHeaders(
+             json({ error: "Cross-origin request rejected." }, 403),
+           );
+@@ -2579,13 +2593,14 @@ export default {
+       if (
+         request.method === "POST" &&
+         origin &&
+-        !allowedMobileOrigins.has(origin) &&
++        !allowedMobileOrigins.has(origin) && !websiteOrigin &&
+         new URL(origin).host !== url.host
+       )
+         return secureHeaders(
+           json({ error: "Cross-origin request rejected." }, 403),
+         );
+       let code = request.headers.get("X-Sajilo-Restaurant") || "101";
++      if(url.pathname.startsWith('/api/public/')&&code!=='101')return secureHeaders(cors(request,json({error:'Website restaurant mismatch.'},404)));
+       // Public media uses only a known restaurant code; normal tenant lookup and
+       // suspension checks below still resolve the database before reading bytes.
+       const publicPhotoCode=url.pathname.match(/^\/api\/guest\/photo\/(101|102)\/[a-f0-9]{64}$/)?.[1];
+diff --git a/app.js b/app.js
+index f5bbe5a..59af7da 100644
+--- a/app.js
++++ b/app.js
+@@ -1260,6 +1260,7 @@
+           ? `${isOfflineClient && localReady && offlineShellReady ? "Live · offline ready" : "Live"}${pendingActions ? ` · ${pendingActions} pending` : lastSuccessfulSync ? ` · synced ${stamp(lastSuccessfulSync)}` : ""}`
+           : `Offline · ${pendingActions} pending`;
+     app.innerHTML = `<div class="app">${nav()}<div class="main"><header class="topbar"><span>Workspace <span class="slash">/</span> <b>${esc(view === "dashboard" ? "Overview" : view === "qrcodes" ? "QR code" : view.charAt(0).toUpperCase() + view.slice(1))}</b></span><div class="top-actions"><span class="connection ${online && !syncError ? "" : "offline"}" title="${esc(syncError || (lastSuccessfulSync ? `Last sync ${stamp(lastSuccessfulSync)}` : "Not synchronized yet"))}">● ${esc(syncText)}</span>${pendingActions || syncError || pendingMutation() ? button("Retry", "retry-sync", "", true) : ""}<time>${new Date().toLocaleDateString("en-GB", { timeZone: "Asia/Kathmandu", day: "numeric", month: "short", year: "numeric" })}</time></div></header>${financialPending() ? `<div class="notice" role="status">A financial operation has an uncertain result. Do not record it again. ${button("Recover payment", "recover-financial", "", true)}</div>` : ""}${pages[view]()}</div>${mobileNav()}</div>`;
++    if(view==='online'&&document.getElementById('website-inbox'))void import('./website-inbox.js').then(module=>module.mountWebsiteInbox(document.getElementById('website-inbox'),api));
+     syncPlatformContent(db.banners||platformBanners);
+     if(['online','qrcodes'].includes(view) && customerQrEnabled()) import(view==='qrcodes' ? './qr-workspace.js' : './table-qr.js').then(module=>module.mount(document.querySelector('#table-qr-workspace'),{api,code:restaurantCode(),manager:workspace==='manager',codesOnly:view==='qrcodes',baseUrl:isAndroidApp?cloudServer:location.origin})).catch(error=>toast(error.message));
+     if (db.apiVersion === 2 && view === "orders")
+@@ -1681,9 +1682,10 @@
+     if(!customerQrEnabled())return onlinePage();
+     return page("QR code","Create, design and print a different ordering QR for every table.",'<div id="table-qr-workspace"><p class="sub">Loading table QR codes…</p></div>');
+   }
++  function websiteInboxPanel(){return workspace==='manager'&&restaurantCode()==='101'?'<section class="card" id="website-inbox"><p>Loading website orders…</p></section>':'';}
+   function onlinePage() {
+     if(!customerQrEnabled()) return page('Online orders','A new way to welcome your guests.','<section class="coming-soon"><h2>Your next table could be anywhere.</h2><p>Online ordering is coming soon.</p></section>');
+-    return page("Table QR & online orders", "Customer requests, table codes and loyalty rewards.", '<div id="table-qr-workspace"><p class="sub">Loading customer ordering…</p></div>');
++    return page("Table QR & online orders", "Customer requests, table codes and loyalty rewards.", websiteInboxPanel()+'<div id="table-qr-workspace"><p class="sub">Loading customer ordering…</p></div>');
+   }
+   function orders() {
+     const statuses = workspace === "waiter" ? ["ready"] : ["new", "ready"];
+diff --git a/sw.js b/sw.js
+index 5b9f8cb..01375a9 100644
+--- a/sw.js
++++ b/sw.js
+@@ -1,4 +1,4 @@
+-const CACHE = "sajilo-shell-v42";
++const CACHE = "sajilo-shell-v43";
+ const SHELL = [
+   "/",
+   "/index.html",
+@@ -10,6 +10,7 @@ const SHELL = [
+   "/terms.html",
+   "/privacy.html",
+   "/app.js",
++  "/website-inbox.js",
+   "/table-qr.js",
+   "/qr-workspace.js",
+   "/qr-generator.js",
+diff --git a/scripts/sync-cloudflare-assets.mjs b/scripts/sync-cloudflare-assets.mjs
+index 37d3540..2795350 100644
+--- a/scripts/sync-cloudflare-assets.mjs
++++ b/scripts/sync-cloudflare-assets.mjs
+@@ -17,6 +17,7 @@ for (const file of [
+   "terms.html",
+   "privacy.html",
+   "app.js",
++  "website-inbox.js",
+   "guest.html",
+   "guest.js",
+   "guest-navigation.js",
