@@ -4,7 +4,8 @@
   const storage='charcha-basket';
   const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const money=n=>'NPR '+Number(n).toLocaleString('en-NP',{minimumFractionDigits:2,maximumFractionDigits:2});
-  let menu;
+  let menu,photos={};
+  function photoFor(item){const photo=photos[item.id];return photo&&photo.name===item.name&&photo.category===item.category?photo:null}
   function bag(){try{const value=JSON.parse(localStorage.getItem(storage)||'[]');return Array.isArray(value)?value.filter(i=>typeof i.menuId==='string'&&Number.isInteger(i.qty)&&i.qty>0&&i.qty<=20):[]}catch{return []}}
   function save(items){localStorage.setItem(storage,JSON.stringify(items));window.updateBag?.()}
   async function api(path,payload){
@@ -41,7 +42,7 @@
     const categories=[...new Set(menu.items.map(i=>i.category))];
     category.innerHTML='<option value="">All categories</option>'+categories.map(c=>`<option>${esc(c)}</option>`).join('');
     function filter(){const q=search.value.trim().toLowerCase(),items=menu.items.filter(i=>(!category.value||i.category===category.value)&&(!q||(i.name+' '+i.category).toLowerCase().includes(q)));
-      list.innerHTML=items.length?items.map(i=>`<article class="pos-item"><span class="eyebrow">${esc(i.category)}</span><h2>${esc(i.name)}</h2><div><strong>${money(i.price)}</strong><button type="button" data-pos-add="${esc(i.id)}" ${!i.available||!menu.open?'disabled':''}>${!i.available?'Unavailable':!menu.open?'Closed':'Add to bag'}</button></div></article>`).join(''):'<p role="status">No matching items. Try another category or search.</p>';
+      list.innerHTML=items.length?items.map(i=>{const photo=photoFor(i);return `<article class="pos-item" data-menu-id="${esc(i.id)}">${photo?`<img class="pos-item-photo" src="${esc(photo.src)}" alt="${esc(i.name)}" width="${photo.width}" height="${photo.height}" loading="lazy" decoding="async">`:''}<div class="pos-item-body"><span class="eyebrow">${esc(i.category)}</span><h2>${esc(i.name)}</h2><div class="pos-item-footer"><strong>${money(i.price)}</strong><button type="button" data-pos-add="${esc(i.id)}" ${!i.available||!menu.open?'disabled':''}>${!i.available?'Unavailable':!menu.open?'Closed':'Add to bag'}</button></div></div></article>`}).join(''):'<p role="status">No matching items. Try another category or search.</p>';
       document.getElementById('posCount').textContent=items.length+' items';
     }
     search.addEventListener('input',filter);category.addEventListener('change',filter);filter();renderMiniBag();
@@ -75,7 +76,7 @@
   window.handleAddToCart=()=>location.assign('menu.html');
   async function start(){
     const root=document.getElementById('posMenu')||document.getElementById('posCheckout');if(!root)return;
-    try{menu=await api('/menu');reconcile();renderMenu();renderCheckout()}
+    try{const [liveMenu,photoData]=await Promise.all([api('/menu'),fetch('menu-photos.json',{cache:'no-cache'}).then(response=>response.ok?response.json():{}).catch(()=>({}))]);menu=liveMenu;photos=photoData;reconcile();renderMenu();renderCheckout()}
     catch(error){root.innerHTML=`<div class="checkout-card"><h1>The menu is temporarily unavailable.</h1><p>${esc(error.message)}</p><button class="primary-btn" id="posRetry">Try again</button><a class="extra-link" href="tel:+9779808836939">Call the café</a></div>`;document.getElementById('posRetry').onclick=start}
   }
   start();

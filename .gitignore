@@ -13,3 +13,6 @@ polish-integration.cjs
 finish-connection.cjs
 current-connection.test.mjs
 preview.cjs
+food-photo-source/
+food-photo-review/
+food-menu-snapshot.json
