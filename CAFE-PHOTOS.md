@@ -10,4 +10,6 @@ The home, story and gallery pages now use only the café uploads supplied in thi
 
 `cafe-photo-sources.json` records the nine unique images and their hashes. Original upload pixels were copied without generative editing.
 
+The supplied images are 228 pixels wide. Café images are capped at their original dimensions to avoid softness from enlargement. Photo overlays no longer apply backdrop blur. Higher-resolution originals are required for large, sharply detailed display; no AI enhancement or invented detail is used.
+
 Validation: all images loaded; all three pages checked at 320, 375, 768, 1024, 1440 and 1920px; no page overflow or uncaught JavaScript errors; category filters, photo opening, Escape dismissal and focus return passed. Confirmed no changes to the menu photo manifest, menu assets, or menu application files.

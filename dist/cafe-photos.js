@@ -1,4 +1,6 @@
 (() => {
+ document.querySelectorAll('.cafe-page-photo').forEach(image=>image.parentElement.classList.add('cafe-native-frame'));
+ document.querySelectorAll('.cafe-visit-photo').forEach(image=>image.parentElement.classList.add('cafe-visit-frame'));
  const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  document.addEventListener('click',event=>{
   const filter=event.target.closest('[data-cafe-filter]');
