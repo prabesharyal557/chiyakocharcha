@@ -1,0 +1,65 @@
+[
+  {
+    "src": "assets/cafe/cafe-corner.png",
+    "title": "A corner for conversation",
+    "alt": "A table inside Chiya ko Charcha with warm ceiling decorations",
+    "category": "cafe",
+    "hash": "a1e89f2f98fcf91cace9a5e6dfb95c9985dc70a87770c6fa922b5b98b33b8037"
+  },
+  {
+    "src": "assets/cafe/selroti-special-poster.png",
+    "title": "Friday & Saturday special",
+    "alt": "Chiya ko Charcha Selroti special promotional poster",
+    "category": "poster",
+    "hash": "0b72f032e600822c8024f3352767fb0229cfd15940a0aabe6114e74910e7c2b3"
+  },
+  {
+    "src": "assets/cafe/cafe-counter.png",
+    "title": "Inside our café",
+    "alt": "The Chiya ko Charcha counter and seating area",
+    "category": "cafe",
+    "hash": "4a9c9053aca1a3488ff8d4812111e2edeaf8fc6309d402a4936bf43c79f7fd37"
+  },
+  {
+    "src": "assets/cafe/courtyard-lights.png",
+    "title": "The courtyard after dark",
+    "alt": "The café courtyard lit by strings of lights at night",
+    "category": "cafe",
+    "hash": "0ddd98af91e067960bc98359b17ca862a2102aa867da5b9967b617f77b22827f"
+  },
+  {
+    "src": "assets/cafe/drink-at-cafe.png",
+    "title": "A drink at the adda",
+    "alt": "A pale yellow drink in a handled glass inside the café",
+    "category": "drinks",
+    "hash": "1b4f77f2653ff2cec9ca82b072a07553749a90c2015d3d6ea8cd2bb62cfd6cc7"
+  },
+  {
+    "src": "assets/cafe/table-and-drink.png",
+    "title": "A moment at the table",
+    "alt": "A drink and flowers on a wooden café table",
+    "category": "drinks",
+    "hash": "be47ffb1fe495e664b7ea5a676bb9b097bcd290d10264503046e1e3aefcda6c1"
+  },
+  {
+    "src": "assets/cafe/selroti.png",
+    "title": "Selroti, fresh from our kitchen",
+    "alt": "A stack of Selroti on a plate at the café",
+    "category": "kitchen",
+    "hash": "0e5a55399e6923528dd9562421cf02880925d32b8526eea3599f92e9034a2d24"
+  },
+  {
+    "src": "assets/cafe/kitchen-plate.png",
+    "title": "From our kitchen",
+    "alt": "A savoury dish with vegetables served on a green plate",
+    "category": "kitchen",
+    "hash": "7d04b201a28791293bbd5fff99369dce1f0a45592401069b9d2d0897bdc5c51f"
+  },
+  {
+    "src": "assets/cafe/evening-entrance.png",
+    "title": "An evening welcome",
+    "alt": "The café entrance and courtyard lights in the evening",
+    "category": "cafe",
+    "hash": "c449b02b5effebee57768b8621bfaa495b363f5c12d2f71ca66e61acd0bab23f"
+  }
+]
