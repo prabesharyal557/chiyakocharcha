@@ -68,3 +68,30 @@ footer .grid>div{min-width:0}
  .checkout-card{padding:20px}.checkout-main h1,.policy h1{font-size:32px}
  footer .mt-12{align-items:flex-start}footer .mt-12>div{justify-content:flex-start}
 }
+/* Phone layouts: shorter header, readable copy and full-width actions. */
+@media(max-width:640px){
+ :root{--mobile-header:68px}
+ html{scroll-padding-top:88px}
+ [id]{scroll-margin-top:88px}
+ .site-header{height:var(--mobile-header);padding-inline:12px}
+ .site-nav{max-height:calc(100dvh - var(--mobile-header));padding:12px}
+ .basket-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px}
+ .home-extra{padding:36px 16px}
+ main .py-space-3xl{padding-block:48px}
+ main .pb-space-3xl{padding-bottom:40px}
+ main .pt-space-xl{padding-top:28px}
+ main .py-16{padding-block:40px}
+ main .text-body-lg{font-size:16px;line-height:1.7}
+ main h1.text-display{font-size:clamp(28px,8vw,36px);line-height:1.18}
+ main>div>section:first-child .text-headline-sm{font-size:17px;line-height:1.5}
+ main>div>section:first-child a.inline-flex{width:100%;min-height:48px;padding-inline:16px}
+ main .grid-cols-3 .text-body-sm{font-size:12px;line-height:1.5}
+ .extra-card{padding:22px}
+ .visit-note{padding:22px;margin-top:28px}
+ footer .footer-logo-wrap{padding:20px 16px 0}
+ footer .footer-brand-logo{width:112px;height:84px}
+ footer .pt-14{padding-top:28px}
+ footer .pb-12{padding-bottom:28px}
+ footer .grid{gap:24px}
+ footer .mt-12{margin-top:28px}
+}

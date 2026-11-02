@@ -47,7 +47,15 @@
     if(line)line.qty++;else items.push({id,menuId:id,name:item.name,price:item.price,qty:1});
     save(items);renderMiniBag();notify(item.name+' added to your bag');
   }
-  function renderMiniBag(){const element=document.getElementById('posBag');if(!element)return;const items=bag(),totals=calculate(items);element.innerHTML=`<h2>Your bag</h2>${items.length?items.map(i=>`<p>${i.qty} × ${esc(i.name)} <strong>${money(i.price*i.qty)}</strong></p>`).join(''):'<p>Choose something from the menu.</p>'}<p>Subtotal <strong>${money(totals.subtotal)}</strong></p><p>Tax (${menu.taxRate}%) <strong>${money(totals.tax)}</strong></p><p>Total <strong>${money(totals.total)}</strong></p><a class="primary-btn" href="checkout.html">Review your bag →</a><p class="fine-print">Delivery fees, if any, are confirmed separately by the café.</p>`}
+  function renderMobileBag(items,totals){
+    let link=document.getElementById('posMobileBag');
+    if(!link){link=document.createElement('a');link.id='posMobileBag';link.className='pos-mobile-bag';link.href='checkout.html';document.body.append(link)}
+    const count=items.reduce((n,item)=>n+item.qty,0);
+    link.hidden=count===0;document.body.classList.toggle('has-mobile-bag',count>0);
+    link.innerHTML=`<span>${count} ${count===1?'item':'items'} · Review bag →</span><strong>${money(totals.total)}</strong>`;
+    link.setAttribute('aria-label',`Review bag, ${count} items, total ${money(totals.total)}`);
+  }
+  function renderMiniBag(){const element=document.getElementById('posBag');if(!element)return;const items=bag(),totals=calculate(items);renderMobileBag(items,totals);element.innerHTML=`<h2>Your bag</h2>${items.length?items.map(i=>`<p>${i.qty} × ${esc(i.name)} <strong>${money(i.price*i.qty)}</strong></p>`).join(''):'<p>Choose something from the menu.</p>'}<p>Subtotal <strong>${money(totals.subtotal)}</strong></p><p>Tax (${menu.taxRate}%) <strong>${money(totals.tax)}</strong></p><p>Total <strong>${money(totals.total)}</strong></p><a class="primary-btn" href="checkout.html">Review your bag →</a><p class="fine-print">Delivery fees, if any, are confirmed separately by the café.</p>`}
   function renderMenu(){
     const search=document.getElementById('posSearch'),category=document.getElementById('posCategory'),list=document.getElementById('posItems');
     if(!list)return;

@@ -28,3 +28,13 @@
 .cafe-photo-dialog img{display:block;max-width:86vw;max-height:76dvh;width:auto;height:auto;object-fit:contain}
 @media(max-width:1023px){.cafe-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.cafe-photo-grid{grid-template-columns:1fr;gap:20px}.cafe-photo-open{height:280px}.cafe-gallery-photo{max-height:280px}.cafe-promo{grid-template-columns:1fr}.cafe-promo .cafe-photo-card{max-width:360px;width:100%;justify-self:center}}
+@media(max-width:640px){
+ .cafe-gallery-title{font-size:32px;line-height:1.2;margin:14px 0 18px}
+ .cafe-photo-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}
+ .cafe-photo-filters button{padding:10px 12px;min-height:48px}
+ .cafe-photo-grid{margin-top:24px}
+ .cafe-hero-frame{padding:12px;gap:12px}
+ .cafe-promo{gap:24px}
+ .cafe-photo-dialog{width:calc(100vw - 24px);padding:12px}
+ .cafe-photo-dialog img{max-width:100%;max-height:70dvh;margin-inline:auto}
+}
