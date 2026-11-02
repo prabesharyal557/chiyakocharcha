@@ -47,7 +47,7 @@ document.querySelectorAll('[id$="Modal"]').forEach(modal=>{
 const app=document.getElementById('checkoutApp');
 if(app){
  const bag=readBag();
- app.innerHTML=`<p class="eyebrow">A little warmth, on its way</p><h1>Your chiya break starts here.</h1><p class="checkout-intro">Review your favourites and send an order request to our Tokha adda.</p><div id="checkoutContent"></div>`;
+ app.innerHTML=`<p class="eyebrow">A little warmth, on its way</p><h1>Your chiya break starts here.</h1><p class="checkout-intro">Review your favourites and send an order request to our Tokha café.</p><div id="checkoutContent"></div>`;
  let details={name:'',phone:'',address:'',notes:'',mode:'pickup'};
  function renderCheckout(){
   const bag=readBag(),content=document.getElementById('checkoutContent');
