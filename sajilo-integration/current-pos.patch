@@ -1,26 +1,50 @@
 diff --git a/cloudflare-worker.ts b/cloudflare-worker.ts
-index b2cea3c..ba7dbe5 100644
+index b2cea3c..317d98c 100644
 --- a/cloudflare-worker.ts
 +++ b/cloudflare-worker.ts
 @@ -1,3 +1,4 @@
-+import {websitePublic,websiteInbox,WebsiteOrderError} from "./website-store.ts";
++import {websitePublic,websiteInbox,websiteDecorate,WebsiteOrderError} from "./website-store.ts";
  import {publicFoodPhoto} from "./qr-card-design.ts";
  import {publicAdminNotFound} from "./public-admin-route.js";
  import {qrCustomerSync,syncExistingQrCustomers,qrCustomerListInfo,qrCustomerDetailInfo} from "./qr-customer-sync.ts";
-@@ -1765,6 +1766,12 @@ export class RestaurantCoordinator extends DurableObject<Env> {
+@@ -1054,6 +1055,7 @@ function mutate(
+   } else if (action === "table.update" || action === "table.delete") {
+     const table = state.tables.find((entry) => entry.n === payload.n);
+     requireThat(table, "Table not found.");
++    requireThat(action!=="table.delete" || (table as any).name!=="Online Orders","The Online Orders table is reserved for website orders.",409);
+     const occupied = state.orders.some(
+       (order) =>
+         order.table === payload.n &&
+@@ -1385,7 +1387,8 @@ export class RestaurantCoordinator extends DurableObject<Env> {
+ 
+   private async state(selection?: Selection) {
+     await this.ensureNormalized();
+-    return normalizedState(this.env.DB, selection, qrDemoEnabled(this.env.RESTAURANT_CODE || '101'));
++    const state=await normalizedState(this.env.DB, selection, qrDemoEnabled(this.env.RESTAURANT_CODE || '101'));
++    return (this.env.RESTAURANT_CODE||'101')==='101' ? await websiteDecorate(this.env.DB,state) : state;
+   }
+ 
+   private async mutationState(action: string, payload: any): Promise<State> {
+@@ -1765,6 +1768,18 @@ export class RestaurantCoordinator extends DurableObject<Env> {
        if (path === "/api/bootstrap" && request.method === "GET")
          return json({ setup: false });
        const payload = request.method === "POST" ? await parseBody(request) : {};
 +      if(path.startsWith('/api/public/')) {
 +        requireThat((this.env.RESTAURANT_CODE||'101')==='101','Website ordering is not available for this restaurant.',404);
 +        const menuState=await this.state({...emptySelection,menuIds:undefined});
-+        return json(await websitePublic(request,this.env.DB,this.ctx.storage,menuState,payload),200,{'Cache-Control':'no-store'});
++        return json(await websitePublic(request,this.env.DB,this.ctx.storage,menuState,payload,async(order,table,statements)=>{
++          const parameters={table,items:order.items.map((i:any)=>({id:i.id,qty:i.qty})),clientOrderId:order.posOrderId};
++          const state=await this.mutationState('order.create',parameters),previous=structuredClone(state);
++          if(!state.tables.some(t=>t.n===table))state.tables.push({n:table,seats:1,status:'available'});
++          mutate(state,{...qrCustomerActor(),id:'website',name:'Website'},'order.create',parameters,{credentials:new Map(),revoke:new Set()});
++          await this.env.DB.batch([...incrementalStatements(this.env.DB,previous,state,'order.create',parameters),...statements]);
++        }),200,{'Cache-Control':'no-store'});
 +      }
 +
        if (path.startsWith('/api/guest/') || path.startsWith('/api/qr/')) {
          requireThat(qrDemoEnabled(this.env.RESTAURANT_CODE || '101'), 'Customer QR ordering is unavailable for this restaurant.',404);
          const photoPrefix='/api/guest/photo/'+(this.env.RESTAURANT_CODE || '101')+'/';
-@@ -1946,6 +1953,12 @@ export class RestaurantCoordinator extends DurableObject<Env> {
+@@ -1946,6 +1961,12 @@ export class RestaurantCoordinator extends DurableObject<Env> {
            ? await this.mutationState(payload.action, payload.payload || {})
            : await this.state(v2 ? operationalSelection : undefined);
        const user = await this.account(request, state);
@@ -33,7 +57,7 @@ index b2cea3c..ba7dbe5 100644
        if (
          user.mustChangePassword &&
          path === "/api/action" &&
-@@ -2481,7 +2494,7 @@ export class RestaurantCoordinator extends DurableObject<Env> {
+@@ -2481,7 +2502,7 @@ export class RestaurantCoordinator extends DurableObject<Env> {
      } catch (error) {
        if(error instanceof Error && error.message.includes("qr_safe_commit")) error=new QrError("The table, menu or bill changed. Review the latest details before confirming again.",409);
        const known =
@@ -42,7 +66,7 @@ index b2cea3c..ba7dbe5 100644
          error instanceof HttpError ||
          error instanceof CancellationError ||
          error instanceof InvoiceError ||
-@@ -2541,7 +2554,7 @@ function secureHeaders(response: Response) {
+@@ -2541,7 +2562,7 @@ function secureHeaders(response: Response) {
  }
  function cors(request: Request, response: Response) {
    const origin = request.headers.get("Origin") || "";
@@ -51,7 +75,7 @@ index b2cea3c..ba7dbe5 100644
      response.headers.set("Access-Control-Allow-Origin", origin);
      response.headers.set("Access-Control-Allow-Credentials", "true");
      response.headers.append("Vary", "Origin");
-@@ -2557,8 +2570,9 @@ export default {
+@@ -2557,8 +2578,9 @@ export default {
      const url = new URL(request.url);
      if (url.pathname.startsWith("/api/")) {
        const origin = request.headers.get("Origin");
@@ -62,7 +86,7 @@ index b2cea3c..ba7dbe5 100644
            return secureHeaders(
              json({ error: "Cross-origin request rejected." }, 403),
            );
-@@ -2579,13 +2593,14 @@ export default {
+@@ -2579,13 +2601,14 @@ export default {
        if (
          request.method === "POST" &&
          origin &&
@@ -78,8 +102,13 @@ index b2cea3c..ba7dbe5 100644
        // Public media uses only a known restaurant code; normal tenant lookup and
        // suspension checks below still resolve the database before reading bytes.
        const publicPhotoCode=url.pathname.match(/^\/api\/guest\/photo\/(101|102)\/[a-f0-9]{64}$/)?.[1];
+@@ -2687,3 +2710,4 @@ export default {
+ } satisfies ExportedHandler<Env>;
+ 
+ 
++
 diff --git a/app.js b/app.js
-index f5bbe5a..59af7da 100644
+index f5bbe5a..4ac28cf 100644
 --- a/app.js
 +++ b/app.js
 @@ -1260,6 +1260,7 @@
@@ -90,6 +119,15 @@ index f5bbe5a..59af7da 100644
      syncPlatformContent(db.banners||platformBanners);
      if(['online','qrcodes'].includes(view) && customerQrEnabled()) import(view==='qrcodes' ? './qr-workspace.js' : './table-qr.js').then(module=>module.mount(document.querySelector('#table-qr-workspace'),{api,code:restaurantCode(),manager:workspace==='manager',codesOnly:view==='qrcodes',baseUrl:isAndroidApp?cloudServer:location.origin})).catch(error=>toast(error.message));
      if (db.apiVersion === 2 && view === "orders")
+@@ -1489,7 +1490,7 @@
+     return page(
+       "A place for every guest.",
+       "Available, busy or reserved — keep your dining room in sync.",
+-      `<div class="legend"><span>● ${db.tables.filter((t) => t.status === "available").length} Available</span><span>● ${db.tables.filter((t) => t.status === "busy").length} Busy</span><span>● ${db.tables.filter((t) => t.status === "pending").length} Pending / reserved</span></div><div class="table-grid">${db.tables.map((t) => `<article class="table ${t.status}"><div class="table-top"><span class="table-symbol">▦</span><span class="status ${t.status}">${t.status === "pending" ? "Reserved" : t.status}</span></div><h2>Table ${t.n}</h2><p class="sub">${t.seats} seats · Main floor</p><div class="table-actions">${workspace === "manager" ? button("Manage", "table-edit", `data-id="${t.n}"`, true) : ""}${button("Open table →", "table-open", `data-id="${t.n}"`, true)}</div></article>`).join("") || empty("Add your first table to start service.")}</div>`,
++      `<div class="legend"><span>● ${db.tables.filter((t) => t.status === "available").length} Available</span><span>● ${db.tables.filter((t) => t.status === "busy").length} Busy</span><span>● ${db.tables.filter((t) => t.status === "pending").length} Pending / reserved</span></div><div class="table-grid">${db.tables.map((t) => `<article class="table ${t.status}"><div class="table-top"><span class="table-symbol">▦</span><span class="status ${t.status}">${t.status === "pending" ? "Reserved" : t.status}</span></div><h2>${esc(t.name || `Table ${t.n}`)}</h2><p class="sub">${t.name ? "Website pickup & delivery" : `${t.seats} seats · Main floor`}</p><div class="table-actions">${workspace === "manager" ? button("Manage", "table-edit", `data-id="${t.n}"`, true) : ""}${button("Open table →", "table-open", `data-id="${t.n}"`, true)}</div></article>`).join("") || empty("Add your first table to start service.")}</div>`,
+       (workspace === "manager" ? button("+ Add table", "table-add") : "") +
+         (scopeStorage.getItem("sajilo-last-receipt:" + sessionScope)
+           ? button(
 @@ -1681,9 +1682,10 @@
      if(!customerQrEnabled())return onlinePage();
      return page("QR code","Create, design and print a different ordering QR for every table.",'<div id="table-qr-workspace"><p class="sub">Loading table QR codes…</p></div>');
@@ -102,13 +140,47 @@ index f5bbe5a..59af7da 100644
    }
    function orders() {
      const statuses = workspace === "waiter" ? ["ready"] : ["new", "ready"];
+@@ -1760,10 +1762,10 @@
+                   return (
+                     '<article class="korder ' +
+                     status +
+-                    '"><div class="top"><div><b>Table ' +
+-                    o.table +
++                    '"><div class="top"><div><b>' +
++                    (o.tableName ? esc(o.tableName) : 'Table ' + o.table) +
+                     "</b><small>Order #" +
+-                    o.id.slice(0, 6) +
++                    (o.source === "Website" ? o.id.slice(-8) : o.id.slice(0, 6)) +
+                     '</small></div><span class="status ' +
+                     status +
+                     '">' +
+@@ -1895,7 +1897,7 @@
+     orderMenuPage = Math.min(orderMenuPage, Math.max(0, Math.ceil(matchedItems.length / 80) - 1));
+     const items = matchedItems.slice(orderMenuPage * 80, (orderMenuPage + 1) * 80);
+     return page(
+-      "Table " + activeTable,
++      (db.tables.find(t=>t.n===activeTable)?.name || "Table " + activeTable),
+       "Add items and send the order to the kitchen.",
+       `<div class="order-layout">${card("Food & drinks", `<div class="order-menu-filters">${select("Category","orderCategory",[["","All items"],...categories.map(c=>[c,c])],orderCategory)}<label>Find an item<input type="search" name="menuSearch" value="${esc(orderSearch)}" placeholder="Search food or category"></label>${select("Sort items","orderSort",[["menu","Menu order"],["name","Name (A–Z)"],["price-low","Price: low to high"],["price-high","Price: high to low"]],orderSort)}</div><div class="items">${items.map((i) => `<button class="item" data-action="cart-add" data-id="${i.id}" data-search="${esc((i.name + " " + i.category).toLowerCase())}" ${(i.name + " " + i.category).toLowerCase().includes(orderSearch.toLowerCase().trim()) ? "" : "hidden"}><span><b>${esc(i.name)}</b><small>${esc(i.category)} · ${money(i.price)}</small></span><span class="plus">+</span></button>`).join("")}</div><p class="order-menu-empty sub" ${items.some(i => (i.name + " " + i.category).toLowerCase().includes(orderSearch.toLowerCase().trim())) ? "hidden" : ""}>No items match your selection.</p>${menuPagination(matchedItems.length, orderMenuPage, "order-menu-page")}`)}${card("Current batch", cart.map((i) => `<div class="ticket-row"><div class="grow"><b>${esc(i.name)}</b><small>${money(i.price)}</small></div><div class="qty">${button("−", "cart-minus", `data-id="${i.id}"`, true)}<b>${i.qty}</b>${button("+", "cart-add", `data-id="${i.id}"`, true)}</div></div>`).join("") + `<div class="sale-row"><b>Batch subtotal</b><b>${money(cart.reduce((a, i) => a + i.price * i.qty, 0))}</b></div><div class="stack">${button("Place order →", "send-order")}${button("View full table bill", "bill", `data-id="${activeTable}"`, true)}</div>`)}</div>`,
+       button("Change table", "navigate", 'data-view="tables"', true),
+@@ -2076,8 +2078,8 @@
+       return;
+     }
+     modal(
+-      "Table " + n + " · Bill",
+-      `<p class="sub">${esc(db.settings.name)} · All unpaid orders</p>${items.map((i) => `<div class="sale-row"><span>${i.qty}× ${esc(i.name)}</span><b>${money(i.price * i.qty)}</b></div>`).join("") || empty("No unpaid items.")}<div class="sale-row"><span>Subtotal</span><b>${money(subtotal)}</b></div><fieldset class="invoice-discount" data-table="${n}"><legend>Bill discount</legend>${select("Discount type","discountType",[["amount","Amount (NPR)"],["percent","Percentage (%)"]],discountInput.type)}${field("Discount value","discountValue",discountInput.value,"number",'min="0" step="0.01"')}${field("Discount reason","discountReason",discountInput.reason,"text",'maxlength="150" placeholder="Required when giving a discount"')}</fieldset><div class="sale-row"><span>Discount</span><b>−${money(discount)}</b></div><div class="sale-row"><span>Tax (${db.settings.taxRate}%)</span><b>${money(tax)}</b></div><div class="sale-row bill-total"><b>Total due</b><b>${money(total)}</b></div><p class="sub">Record payment only after collecting it. All orders must be served.</p><fieldset class="invoice-customer" data-table="${n}"><legend>Customer details for the bill</legend>${field("Find saved customer by phone or name","billCustomerSearch",buyer.customerSearch || "","search",'maxlength="100"')}${button("Find customer","bill-customer-search",`data-id="${n}"`,true)}${select("Link bill to saved customer","customerId",[["","Walk-in / no saved customer"],...customerMatches.map(c => [c.id,`${c.name} · ${c.phone}`])],buyer.customerId || "")}${button("+ New customer","bill-customer-add",`data-id="${n}"`,true)}${field("Customer name", "invoiceBuyerName", buyer.name || "", "text", 'maxlength="100" placeholder="Walk-in guest"')}${field("Customer address", "invoiceBuyerAddress", buyer.address || "", "text", 'maxlength="200"')}${field("Customer PAN (optional)", "invoiceBuyerPan", buyer.pan || "", "text", 'maxlength="9" inputmode="numeric" pattern="[0-9]{9}"')}</fieldset><div class="methods">${["Cash", "QR", "Card"].map((method) => button(method, "payment-select", `data-id="${n}" data-method="${method}" data-total="${total}" ${items.length ? "" : "disabled"} aria-pressed="${selectedMethod === method}"`)).join("")}</div><div class="form-error" role="alert"></div>${selectedMethod === "QR" ? `<section class="qr-payment"><h3>Choose QR payment</h3><div class="methods">${[["esewa","eSewa"],["bank","Bank"]].map(([provider,label]) => button(label,"qr-select",`data-id="${n}" data-provider="${provider}" aria-pressed="${qrProvider === provider}"`,true)).join("")}</div>${qrProvider ? (paymentQrImages?.[qrProvider] ? `<img class="payment-qr-image" src="${esc(paymentQrImages[qrProvider])}" alt="${qrProvider === "esewa" ? "eSewa" : "Bank"} payment QR"><p class="sub">Ask the guest to scan and pay ${money(total)}.</p>` : `<p class="notice">No ${qrProvider === "esewa" ? "eSewa" : "Bank"} QR uploaded. Ask your manager to add it in Settings.</p>`) : ""}</section>` : ""}${selectedMethod && (selectedMethod !== "QR" || (qrProvider && paymentQrImages?.[qrProvider])) ? `<section class="payment-confirm"><span class="eyebrow">CONFIRM PAYMENT</span><h3>${money(total)} <small>via ${selectedMethod === "QR" ? (qrProvider === "esewa" ? "eSewa QR" : "Bank QR") : selectedMethod}</small></h3><p>Confirm only after receiving the full amount from the guest.</p><div class="actions">${button("Confirm payment", "pay", `data-id="${n}" data-method="${selectedMethod}" data-discount="${discount}" data-total="${total}` + `"`)}${button("Back to bill", "bill", `data-id="${n}"`, true)}</div></section>` : ""}`,
++      (db.tables.find(t=>t.n===n)?.name || "Table " + n) + " · Bill",
++      `<p class="sub">${esc(db.settings.name)} · All unpaid orders</p>${db.tables.find(t=>t.n===n)?.name === "Online Orders" ? `<p class="notice">This bill includes ALL unpaid website tickets on Online Orders. Review each customer before collecting payment.</p>${db.orders.filter(o=>o.table===n && !o.paid && o.status!=="cancelled").map(o=>`<p><b>${esc(o.customerName || "Website guest")}</b> · #${esc(o.id.slice(-8))} · ${esc(o.status)}</p>`).join("")}` : ""}${items.map((i) => `<div class="sale-row"><span>${i.qty}× ${esc(i.name)}</span><b>${money(i.price * i.qty)}</b></div>`).join("") || empty("No unpaid items.")}<div class="sale-row"><span>Subtotal</span><b>${money(subtotal)}</b></div><fieldset class="invoice-discount" data-table="${n}"><legend>Bill discount</legend>${select("Discount type","discountType",[["amount","Amount (NPR)"],["percent","Percentage (%)"]],discountInput.type)}${field("Discount value","discountValue",discountInput.value,"number",'min="0" step="0.01"')}${field("Discount reason","discountReason",discountInput.reason,"text",'maxlength="150" placeholder="Required when giving a discount"')}</fieldset><div class="sale-row"><span>Discount</span><b>−${money(discount)}</b></div><div class="sale-row"><span>Tax (${db.settings.taxRate}%)</span><b>${money(tax)}</b></div><div class="sale-row bill-total"><b>Total due</b><b>${money(total)}</b></div><p class="sub">Record payment only after collecting it. All orders must be served.</p><fieldset class="invoice-customer" data-table="${n}"><legend>Customer details for the bill</legend>${field("Find saved customer by phone or name","billCustomerSearch",buyer.customerSearch || "","search",'maxlength="100"')}${button("Find customer","bill-customer-search",`data-id="${n}"`,true)}${select("Link bill to saved customer","customerId",[["","Walk-in / no saved customer"],...customerMatches.map(c => [c.id,`${c.name} · ${c.phone}`])],buyer.customerId || "")}${button("+ New customer","bill-customer-add",`data-id="${n}"`,true)}${field("Customer name", "invoiceBuyerName", buyer.name || "", "text", 'maxlength="100" placeholder="Walk-in guest"')}${field("Customer address", "invoiceBuyerAddress", buyer.address || "", "text", 'maxlength="200"')}${field("Customer PAN (optional)", "invoiceBuyerPan", buyer.pan || "", "text", 'maxlength="9" inputmode="numeric" pattern="[0-9]{9}"')}</fieldset><div class="methods">${["Cash", "QR", "Card"].map((method) => button(method, "payment-select", `data-id="${n}" data-method="${method}" data-total="${total}" ${items.length ? "" : "disabled"} aria-pressed="${selectedMethod === method}"`)).join("")}</div><div class="form-error" role="alert"></div>${selectedMethod === "QR" ? `<section class="qr-payment"><h3>Choose QR payment</h3><div class="methods">${[["esewa","eSewa"],["bank","Bank"]].map(([provider,label]) => button(label,"qr-select",`data-id="${n}" data-provider="${provider}" aria-pressed="${qrProvider === provider}"`,true)).join("")}</div>${qrProvider ? (paymentQrImages?.[qrProvider] ? `<img class="payment-qr-image" src="${esc(paymentQrImages[qrProvider])}" alt="${qrProvider === "esewa" ? "eSewa" : "Bank"} payment QR"><p class="sub">Ask the guest to scan and pay ${money(total)}.</p>` : `<p class="notice">No ${qrProvider === "esewa" ? "eSewa" : "Bank"} QR uploaded. Ask your manager to add it in Settings.</p>`) : ""}</section>` : ""}${selectedMethod && (selectedMethod !== "QR" || (qrProvider && paymentQrImages?.[qrProvider])) ? `<section class="payment-confirm"><span class="eyebrow">CONFIRM PAYMENT</span><h3>${money(total)} <small>via ${selectedMethod === "QR" ? (qrProvider === "esewa" ? "eSewa QR" : "Bank QR") : selectedMethod}</small></h3><p>Confirm only after receiving the full amount from the guest.</p><div class="actions">${button("Confirm payment", "pay", `data-id="${n}" data-method="${selectedMethod}" data-discount="${discount}" data-total="${total}` + `"`)}${button("Back to bill", "bill", `data-id="${n}"`, true)}</div></section>` : ""}`,
+     );
+   }
+   const menuPhotoDrafts=new Map();
 diff --git a/sw.js b/sw.js
-index 5b9f8cb..01375a9 100644
+index 5b9f8cb..9c390e2 100644
 --- a/sw.js
 +++ b/sw.js
 @@ -1,4 +1,4 @@
 -const CACHE = "sajilo-shell-v42";
-+const CACHE = "sajilo-shell-v43";
++const CACHE = "sajilo-shell-v44";
  const SHELL = [
    "/",
    "/index.html",
