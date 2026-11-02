@@ -6,6 +6,18 @@
   const money=n=>'NPR '+Number(n).toLocaleString('en-NP',{minimumFractionDigits:2,maximumFractionDigits:2});
   let menu,photos={};
   function photoFor(item){const photo=photos[item.id];return photo&&photo.name===item.name&&photo.category===item.category?photo:null}
+  function fitPhoto(button){
+    const photo=photos[button.closest('[data-menu-id]').dataset.menuId],image=button.querySelector('img');
+    if(!photo||!image)return;
+    const box=photo.focus||{x:0,y:0,width:photo.width,height:photo.height},frame=button.getBoundingClientRect();
+    if(!frame.width)return;
+    const scale=Math.min(frame.width/box.width,frame.height/box.height)*.92;
+    image.style.width=photo.width*scale+'px';image.style.height=photo.height*scale+'px';
+    image.style.left=frame.width/2-(box.x+box.width/2)*scale+'px';
+    image.style.top=frame.height/2-(box.y+box.height/2)*scale+'px';
+  }
+  const photoResize=new ResizeObserver(entries=>entries.forEach(entry=>fitPhoto(entry.target)));
+  function fitPhotos(){photoResize.disconnect();document.querySelectorAll('.pos-photo-button').forEach(button=>{fitPhoto(button);photoResize.observe(button)})}
   function bag(){try{const value=JSON.parse(localStorage.getItem(storage)||'[]');return Array.isArray(value)?value.filter(i=>typeof i.menuId==='string'&&Number.isInteger(i.qty)&&i.qty>0&&i.qty<=20):[]}catch{return []}}
   function save(items){localStorage.setItem(storage,JSON.stringify(items));window.updateBag?.()}
   async function api(path,payload){
@@ -42,8 +54,9 @@
     const categories=[...new Set(menu.items.map(i=>i.category))];
     category.innerHTML='<option value="">All categories</option>'+categories.map(c=>`<option>${esc(c)}</option>`).join('');
     function filter(){const q=search.value.trim().toLowerCase(),items=menu.items.filter(i=>(!category.value||i.category===category.value)&&(!q||(i.name+' '+i.category).toLowerCase().includes(q)));
-      list.innerHTML=items.length?items.map(i=>{const photo=photoFor(i);return `<article class="pos-item" data-menu-id="${esc(i.id)}">${photo?`<img class="pos-item-photo" src="${esc(photo.src)}" alt="${esc(i.name)}" width="${photo.width}" height="${photo.height}" loading="lazy" decoding="async">`:''}<div class="pos-item-body"><span class="eyebrow">${esc(i.category)}</span><h2>${esc(i.name)}</h2><div class="pos-item-footer"><strong>${money(i.price)}</strong><button type="button" data-pos-add="${esc(i.id)}" ${!i.available||!menu.open?'disabled':''}>${!i.available?'Unavailable':!menu.open?'Closed':'Add to bag'}</button></div></div></article>`}).join(''):'<p role="status">No matching items. Try another category or search.</p>';
+      list.innerHTML=items.length?items.map(i=>{const photo=photoFor(i);return `<article class="pos-item" data-menu-id="${esc(i.id)}">${photo?`<button type="button" class="pos-photo-button" aria-label="View full photo of ${esc(i.name)}"><img class="pos-item-photo" src="${esc(photo.src)}" alt="${esc(i.name)}" width="${photo.width}" height="${photo.height}" loading="lazy" decoding="async"></button>`:''}<div class="pos-item-body"><span class="eyebrow">${esc(i.category)}</span><h2>${esc(i.name)}</h2><div class="pos-item-footer"><strong>${money(i.price)}</strong><button type="button" data-pos-add="${esc(i.id)}" ${!i.available||!menu.open?'disabled':''}>${!i.available?'Unavailable':!menu.open?'Closed':'Add to bag'}</button></div></div></article>`}).join(''):'<p role="status">No matching items. Try another category or search.</p>';
       document.getElementById('posCount').textContent=items.length+' items';
+      fitPhotos();
     }
     search.addEventListener('input',filter);category.addEventListener('change',filter);filter();renderMiniBag();
     document.getElementById('posStatus').textContent=(menu.open?'The café is accepting order requests.':'The café is closed for online orders.')+' Prices and availability from SajiloPOS. Tax is shown in your bag.';
@@ -72,7 +85,20 @@
       }catch(error){status.textContent=error.message;root.querySelectorAll('button,input,select,textarea').forEach(control=>control.disabled=false);button.textContent='Retry order request →'}
     });
   }
-  document.addEventListener('click',event=>{const button=event.target.closest('[data-pos-add]');if(button)add(button.dataset.posAdd)});
+  document.addEventListener('click',event=>{
+    const photoButton=event.target.closest('.pos-photo-button');
+    if(photoButton){
+      const image=photoButton.querySelector('img'),dialog=document.createElement('dialog');
+      dialog.className='pos-photo-dialog';dialog.setAttribute('aria-label',image.alt);
+      dialog.innerHTML=`<div class="pos-photo-heading"><h2>${esc(image.alt)}</h2><button type="button" class="pos-photo-close" aria-label="Close photo">×</button></div><img class="pos-photo-full" src="${esc(image.getAttribute('src'))}" alt="${esc(image.alt)}">`;
+      document.body.append(dialog);dialog.showModal();
+      dialog.querySelector('button').onclick=()=>dialog.close();
+      dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+      dialog.addEventListener('close',()=>{dialog.remove();photoButton.focus()},{once:true});
+      return;
+    }
+    const button=event.target.closest('[data-pos-add]');if(button)add(button.dataset.posAdd);
+  });
   window.handleAddToCart=()=>location.assign('menu.html');
   async function start(){
     const root=document.getElementById('posMenu')||document.getElementById('posCheckout');if(!root)return;

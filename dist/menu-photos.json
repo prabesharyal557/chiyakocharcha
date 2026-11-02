@@ -5,7 +5,13 @@
     "src": "assets/menu-food/chauchau-aanda-62fcaa.webp",
     "source": "Nepali_Chauchau_Aanda_on_plate_bcd8da35.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 45.26,
+      "y": 241.62,
+      "width": 628.48,
+      "height": 533.76
+    }
   },
   "671c0105eecd2e6c1b8b19e8": {
     "name": "Keema noodels",
@@ -13,7 +19,13 @@
     "src": "assets/menu-food/keema-noodels-671c01.webp",
     "source": "Nepali-style_Keema_Noodles_photo…_115b9ddf.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 64.62,
+      "y": 150.56,
+      "width": 652.38,
+      "height": 762.88
+    }
   },
   "7c748fae7ee07177896a5115": {
     "name": "Hakka noodles",
@@ -21,7 +33,13 @@
     "src": "assets/menu-food/hakka-noodles-7c748f.webp",
     "source": "Hakka_noodles_on_plate_4395b9f1.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 82.72,
+      "y": 170.14,
+      "width": 634.28,
+      "height": 766.72
+    }
   },
   "8a8ff14af26204e08de4dc19": {
     "name": "Chicken noodles",
@@ -29,7 +47,13 @@
     "src": "assets/menu-food/chicken-noodles-8a8ff1.webp",
     "source": "Chicken_noodles_on_plate_788aa57f.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 75.82,
+      "y": 272.4,
+      "width": 559.36,
+      "height": 499.2
+    }
   },
   "f63c8100250707024bfdb9fb": {
     "name": "Buff noodles",
@@ -37,7 +61,13 @@
     "src": "assets/menu-food/buff-noodles-f63c81.webp",
     "source": "Buff_noodles_on_plate_86dca2d6.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 46.38,
+      "y": 279.18,
+      "width": 618.24,
+      "height": 528.64
+    }
   },
   "ad829efcb580cb79aca8a3f6": {
     "name": "Chilly garlic noodles",
@@ -45,7 +75,13 @@
     "src": "assets/menu-food/chilly-garlic-noodles-ad829e.webp",
     "source": "Chili_garlic_noodles_on_plate_a45afe59.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 47.42,
+      "y": 248.64,
+      "width": 636.16,
+      "height": 542.72
+    }
   },
   "61ca658bb09c1ad43f1afbf7": {
     "name": "Veg Fry rice",
@@ -53,7 +89,13 @@
     "src": "assets/menu-food/veg-fry-rice-61ca65.webp",
     "source": "Vegetable_fried_rice_on_plate_78236c48.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 90.84,
+      "y": 190.7,
+      "width": 626.16,
+      "height": 697.6
+    }
   },
   "4f1bb80e0439ce0df2b2333c": {
     "name": "Mix Fry rice",
@@ -61,7 +103,13 @@
     "src": "assets/menu-food/mix-fry-rice-4f1bb8.webp",
     "source": "Serving_of_mixed_fried_rice_2523fc79.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 65.74,
+      "y": 252.44,
+      "width": 587.52,
+      "height": 453.12
+    }
   },
   "6a77a28a9f226fec8f1e4a3f": {
     "name": "Buff fry rice",
@@ -69,7 +117,13 @@
     "src": "assets/menu-food/buff-fry-rice-6a77a2.webp",
     "source": "Nepali_buffalo_fried_rice_430f671a.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 77.12,
+      "y": 256.64,
+      "width": 565.76,
+      "height": 542.72
+    }
   },
   "1077251d6ec607080573c921": {
     "name": "Chicken fry rice",
@@ -77,7 +131,13 @@
     "src": "assets/menu-food/chicken-fry-rice-107725.webp",
     "source": "Nepali-style_chicken_fried_rice_9208c5d9.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 0,
+      "y": 153.18,
+      "width": 717,
+      "height": 784.64
+    }
   },
   "f7af9993a7ad31564a517220": {
     "name": "Sausage Fry Rice",
@@ -85,7 +145,13 @@
     "src": "assets/menu-food/sausage-fry-rice-f7af99.webp",
     "source": "Sausage_fried_rice_plate_bb12d1d7.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 62.88,
+      "y": 276.78,
+      "width": 586.24,
+      "height": 477.44
+    }
   },
   "e5f2e4216051edf63df412de": {
     "name": "Veg Momo",
@@ -93,7 +159,13 @@
     "src": "assets/menu-food/veg-momo-e5f2e4.webp",
     "source": "Steamed_vegetable_momos_with_achar_9d5d6e05.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 72.32,
+      "y": 225.36,
+      "width": 644.68,
+      "height": 609.28
+    }
   },
   "3c69f1c2e8d40406fabe4e5f": {
     "name": "Buff Momo",
@@ -101,7 +173,13 @@
     "src": "assets/menu-food/buff-momo-3c69f1.webp",
     "source": "Nepali_steamed_buffalo_meat_momos_79461322.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 55.46,
+      "y": 273.94,
+      "width": 590.08,
+      "height": 421.12
+    }
   },
   "937de30535eccbfc398124e8": {
     "name": "Chicken Momo",
@@ -109,7 +187,13 @@
     "src": "assets/menu-food/chicken-momo-937de3.webp",
     "source": "Chicken_momos_served_with_achar_0a20414b.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 0,
+      "y": 237.36,
+      "width": 689.88,
+      "height": 545.28
+    }
   },
   "7e2b9b2a258367df60a82340": {
     "name": "Chicken Fried momo",
@@ -117,7 +201,13 @@
     "src": "assets/menu-food/chicken-fried-momo-7e2b9b.webp",
     "source": "Fried_chicken_momos_with_sauce_56359ae4.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 63.02,
+      "y": 205.68,
+      "width": 648.96,
+      "height": 496.64
+    }
   },
   "2f3e75f08f75356b3766d9a0": {
     "name": "Buff fried momo",
@@ -125,7 +215,13 @@
     "src": "assets/menu-food/buff-fried-momo-2f3e75.webp",
     "source": "Fried_buffalo_momos_on_plate_e4cbaa10.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 52.9,
+      "y": 294.8,
+      "width": 595.2,
+      "height": 486.4
+    }
   },
   "17caa6442e6c87a69272488f": {
     "name": "Veg fried momo",
@@ -133,7 +229,13 @@
     "src": "assets/menu-food/veg-fried-momo-17caa6.webp",
     "source": "Fried_vegetable_momos_on_plate_254ba04b.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 75.18,
+      "y": 242.86,
+      "width": 592.64,
+      "height": 449.28
+    }
   },
   "691ab164492b8d21c6043298": {
     "name": "Kothe momo",
@@ -141,7 +243,13 @@
     "src": "assets/menu-food/kothe-momo-691ab1.webp",
     "source": "Nepali_Kothe_Momos_on_plate_0568c8b0.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 63.06,
+      "y": 233.54,
+      "width": 602.88,
+      "height": 497.92
+    }
   },
   "a2fe09d9fe01383965138b32": {
     "name": "Virgin mojito",
@@ -149,7 +257,13 @@
     "src": "assets/menu-food/virgin-mojito-a2fe09.webp",
     "source": "Virgin_mojito_in_highball_glass_f06b9d74.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 197.86,
+      "y": 81.16,
+      "width": 321.28,
+      "height": 839.68
+    }
   },
   "c11a1094f7988338af56f836": {
     "name": "Xtreme",
@@ -157,7 +271,13 @@
     "src": "assets/menu-food/xtreme-c11a10.webp",
     "source": "Xtreme-Energy-Drink.jpg",
     "width": 450,
-    "height": 450
+    "height": 450,
+    "focus": {
+      "x": 154.76,
+      "y": 38.12,
+      "width": 148.48,
+      "height": 373.76
+    }
   },
   "250e6deba76ab951d3970704": {
     "name": "Masala coke",
@@ -165,7 +285,13 @@
     "src": "assets/menu-food/masala-coke-250e6d.webp",
     "source": "Glass_of_masala_cola_1e56f530.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 187.62,
+      "y": 88.78,
+      "width": 341.76,
+      "height": 797.44
+    }
   },
   "b9e970524c68a52a7901f242": {
     "name": "Lemon iced tea",
@@ -173,7 +299,13 @@
     "src": "assets/menu-food/lemon-iced-tea-b9e970.webp",
     "source": "Lemon_iced_tea_in_glass_37e94487.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 167.94,
+      "y": 66.7,
+      "width": 421.12,
+      "height": 889.6
+    }
   },
   "be679a9eb0fcb1dbb89b8c19": {
     "name": "Mint lemonade",
@@ -181,7 +313,13 @@
     "src": "assets/menu-food/mint-lemonade-be679a.webp",
     "source": "Mint_lemonade_in_glass_03488dca.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 185.36,
+      "y": 121.12,
+      "width": 353.28,
+      "height": 821.76
+    }
   },
   "70001b787cfb8e2f0e24c15f": {
     "name": "Fresh lime soda",
@@ -189,7 +327,13 @@
     "src": "assets/menu-food/fresh-lime-soda-70001b.webp",
     "source": "Glass_of_lime_soda_af2897ee.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 155.62,
+      "y": 150.08,
+      "width": 405.76,
+      "height": 803.84
+    }
   },
   "463929b356f6adaecf30857a": {
     "name": "Fresh lime water",
@@ -197,7 +341,13 @@
     "src": "assets/menu-food/fresh-lime-water-463929.webp",
     "source": "Glass_of_lime_water_c9a05163.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 144.38,
+      "y": 109.44,
+      "width": 426.24,
+      "height": 837.12
+    }
   },
   "84ccee249b02b20dbc0b897b": {
     "name": "Red bull",
@@ -205,7 +355,13 @@
     "src": "assets/menu-food/red-bull-84ccee.webp",
     "source": "Red_Bull_can_standing_upright_ca4d54f8.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 167.56,
+      "y": 41.62,
+      "width": 378.88,
+      "height": 917.76
+    }
   },
   "acd8a4ca94b33bdbd2bf5bc9": {
     "name": "Black Coffee",
@@ -213,7 +369,13 @@
     "src": "assets/menu-food/black-coffee-acd8a4.webp",
     "source": "Hot_black_coffee_in_cup_414b5c8f.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 147.08,
+      "y": 246.74,
+      "width": 419.84,
+      "height": 459.52
+    }
   },
   "4b52f4ba319d2c9fb6c5b45e": {
     "name": "Milk coffee",
@@ -221,7 +383,13 @@
     "src": "assets/menu-food/milk-coffee-4b52f4.webp",
     "source": "Hot_milk_coffee_in_cup_ce885908.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 139.26,
+      "y": 203.88,
+      "width": 436.48,
+      "height": 650.24
+    }
   },
   "07d1de93e937758cb84eb411": {
     "name": "Periperi fries",
@@ -229,7 +397,13 @@
     "src": "assets/menu-food/periperi-fries-07d1de.webp",
     "source": "Peri-peri_French_fries_served_4fb52a63.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 49.38,
+      "y": 245.47,
+      "width": 618.24,
+      "height": 471.14
+    }
   },
   "ce1e7111e261b524a1d72c8f": {
     "name": "French fries",
@@ -237,7 +411,13 @@
     "src": "assets/menu-food/french-fries-ce1e71.webp",
     "source": "French_fries_on_plate_3d7ef741.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 24.48,
+      "y": 265.94,
+      "width": 663.04,
+      "height": 485.12
+    }
   },
   "ecc3a5ebb626779112b1c531": {
     "name": "Chicken loaded fries",
@@ -245,7 +425,13 @@
     "src": "assets/menu-food/chicken-loaded-fries-ecc3a5.webp",
     "source": "French_fries_with_chicken_topping_ca8a41f2.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 61.32,
+      "y": 295.54,
+      "width": 591.36,
+      "height": 369.92
+    }
   },
   "cea1eff58d5cbecaaf260ade": {
     "name": "Chicken sausage fry",
@@ -253,7 +439,13 @@
     "src": "assets/menu-food/chicken-sausage-fry-cea1ef.webp",
     "source": "Fried_chicken_sausages_on_plate_f179b3d5.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 101.3,
+      "y": 271.44,
+      "width": 518.4,
+      "height": 517.12
+    }
   },
   "8b2390ad20e97ec23b866429": {
     "name": "Buff sausage fry",
@@ -261,7 +453,13 @@
     "src": "assets/menu-food/buff-sausage-fry-8b2390.webp",
     "source": "Sliced_fried_buffalo_sausages_plate_95bf4462.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 0,
+      "y": 153.84,
+      "width": 717,
+      "height": 760.32
+    }
   },
   "4f3d475ff916ea533b0a7d2e": {
     "name": "Chic sausage chilly",
@@ -269,7 +467,13 @@
     "src": "assets/menu-food/chic-sausage-chilly-4f3d47.webp",
     "source": "Chicken_sausage_chilly_on_plate_21cfc737.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 62.5,
+      "y": 278.62,
+      "width": 608.0,
+      "height": 533.76
+    }
   },
   "8a0422809255bdca36c5a18d": {
     "name": "Buff sausage chilly",
@@ -277,7 +481,13 @@
     "src": "assets/menu-food/buff-sausage-chilly-8a0422.webp",
     "source": "Buffalo_sausage_chili_plate_76ff9f29.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 48.94,
+      "y": 275.3,
+      "width": 613.12,
+      "height": 454.4
+    }
   },
   "41ca72621ac7aae55b169c16": {
     "name": "Buff sukuti",
@@ -285,7 +495,13 @@
     "src": "assets/menu-food/buff-sukuti-41ca72.webp",
     "source": "Nepali_buff_sukuti_served_on_5a937bf6.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 86.9,
+      "y": 213.0,
+      "width": 531.2,
+      "height": 640.0
+    }
   },
   "709f202afca1d0bda2203898": {
     "name": "Chicken sukuti",
@@ -293,7 +509,13 @@
     "src": "assets/menu-food/chicken-sukuti-709f20.webp",
     "source": "Chicken_sukuti_on_white_plate_bc9900bc.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 79.82,
+      "y": 238.24,
+      "width": 559.36,
+      "height": 555.52
+    }
   },
   "96fb251f50fbee6b686324c8": {
     "name": "Sweet corn",
@@ -301,7 +523,13 @@
     "src": "assets/menu-food/sweet-corn-96fb25.webp",
     "source": "Corn_kernels_in_bowl_4e6fdf22.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 79.8,
+      "y": 193.78,
+      "width": 550.4,
+      "height": 669.44
+    }
   },
   "f92d01342d39bf843af6a980": {
     "name": "Chicken spring roll",
@@ -309,7 +537,13 @@
     "src": "assets/menu-food/chicken-spring-roll-f92d01.webp",
     "source": "Chicken_spring_rolls_on_plate_d06d8b9f.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 76.96,
+      "y": 251.82,
+      "width": 558.08,
+      "height": 431.36
+    }
   },
   "cbf5396e5b2a6000fca41e64": {
     "name": "Chicken pocket samosa",
@@ -317,7 +551,13 @@
     "src": "assets/menu-food/chicken-pocket-samosa-cbf539.webp",
     "source": "Five_crispy_chicken_samosas_served_e469e18c.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 34.12,
+      "y": 207.26,
+      "width": 629.76,
+      "height": 500.48
+    }
   },
   "23d267c9f3de275a3fadef67": {
     "name": "Chicken corn dog",
@@ -325,7 +565,13 @@
     "src": "assets/menu-food/chicken-corn-dog-23d267.webp",
     "source": "Chicken_sausage_corn_dogs_fb9862cd.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 70.24,
+      "y": 184.44,
+      "width": 555.52,
+      "height": 517.12
+    }
   },
   "9f051d5eaa45973b1d28a1fb": {
     "name": "Chicken lollipop",
@@ -333,7 +579,13 @@
     "src": "assets/menu-food/chicken-lollipop-9f051d.webp",
     "source": "Chicken_lollipops_on_white_plate_e00b1da3.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 43.7,
+      "y": 222.96,
+      "width": 633.6,
+      "height": 558.08
+    }
   },
   "c2c5ba4f0a1c2df31225d410": {
     "name": "Chicken wings",
@@ -341,7 +593,13 @@
     "src": "assets/menu-food/chicken-wings-c2c5ba.webp",
     "source": "Chicken_wings_on_plate_eff9ff3d.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 100.3,
+      "y": 232.54,
+      "width": 518.4,
+      "height": 497.92
+    }
   },
   "048251104173ddcae1dc2d8a": {
     "name": "Mustang aalu",
@@ -349,7 +607,13 @@
     "src": "assets/menu-food/mustang-aalu-048251.webp",
     "source": "Nepali_Mustang_Aalu_recipe_6c3ba7a0.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 94.32,
+      "y": 254.44,
+      "width": 527.36,
+      "height": 517.12
+    }
   },
   "0b4d1b9b35a140e822c75e6e": {
     "name": "Chauchau sadeko",
@@ -357,7 +621,13 @@
     "src": "assets/menu-food/chauchau-sadeko-0b4d1b.webp",
     "source": "Preparing_Nepali_chauchau_sadeko_ac5c845e.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 63.46,
+      "y": 254.8,
+      "width": 590.08,
+      "height": 550.4
+    }
   },
   "4534cf2252f654147b1d7636": {
     "name": "Peanut sadheko",
@@ -365,7 +635,13 @@
     "src": "assets/menu-food/peanut-sadheko-4534cf.webp",
     "source": "Nepali_peanut_sadheko_on_plate_fbd435a3.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 59.92,
+      "y": 245.12,
+      "width": 604.16,
+      "height": 565.76
+    }
   },
   "69d521a43b5eabbdcf92e948": {
     "name": "Plain peanut",
@@ -373,7 +649,13 @@
     "src": "assets/menu-food/plain-peanut-69d521.webp",
     "source": "Roasted_peanuts_in_bowl_1e433278.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 9.82,
+      "y": 211.96,
+      "width": 687.36,
+      "height": 558.08
+    }
   },
   "b6ce43465befb25477ecf479": {
     "name": "green salad",
@@ -381,7 +663,13 @@
     "src": "assets/menu-food/green-salad-b6ce43.webp",
     "source": "Green_salad_on_white_plate_56c63f53.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 64.9,
+      "y": 316.14,
+      "width": 595.2,
+      "height": 382.72
+    }
   },
   "eede0231d4429eb9fa925ed7": {
     "name": "Chicken chilli",
@@ -389,7 +677,13 @@
     "src": "assets/menu-food/chicken-chilli-eede02.webp",
     "source": "Chicken_chilli_on_plate_1448e504.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 49.24,
+      "y": 256.66,
+      "width": 619.52,
+      "height": 487.68
+    }
   },
   "d66720464e14dcba8ae00e27": {
     "name": "Buff chilli",
@@ -397,7 +691,13 @@
     "src": "assets/menu-food/buff-chilli-d66720.webp",
     "source": "Buffalo_chilli_on_white_plate_6747bf9e.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 70.98,
+      "y": 275.64,
+      "width": 567.04,
+      "height": 414.72
+    }
   },
   "a98f34b8e586430aa5af6280": {
     "name": "Pork chilli",
@@ -405,7 +705,13 @@
     "src": "assets/menu-food/pork-chilli-a98f34.webp",
     "source": "Pork_chilli_on_white_plate_63656aab.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 58.8,
+      "y": 239.34,
+      "width": 614.4,
+      "height": 600.32
+    }
   },
   "faa218de5f8dda1fec18d47d": {
     "name": "Paneer chilli",
@@ -413,7 +719,13 @@
     "src": "assets/menu-food/paneer-chilli-faa218.webp",
     "source": "Paneer_chilli_on_white_plate_63e9a0e5.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 56.96,
+      "y": 246.22,
+      "width": 622.08,
+      "height": 610.56
+    }
   },
   "5a60fd9d4e02940654888db5": {
     "name": "Chips chilli",
@@ -421,7 +733,13 @@
     "src": "assets/menu-food/chips-chilli-5a60fd.webp",
     "source": "Making_spicy_chili_potato_fries_db376905.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 82.22,
+      "y": 246.2,
+      "width": 546.56,
+      "height": 537.6
+    }
   },
   "755155d6698384246ed336e0": {
     "name": "Chicken chowmein",
@@ -429,7 +747,13 @@
     "src": "assets/menu-food/chicken-chowmein-755155.webp",
     "source": "Nepali_chicken_chowmein_on_plate_7dca8ed4.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 91.92,
+      "y": 267.44,
+      "width": 540.16,
+      "height": 517.12
+    }
   },
   "8f20c3049cd646c7c0fe83b9": {
     "name": "Buff chowmein",
@@ -437,7 +761,13 @@
     "src": "assets/menu-food/buff-chowmein-8f20c3.webp",
     "source": "Nepali_buffalo_chowmein_on_plate_74e64ffb.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 70.3,
+      "y": 267.72,
+      "width": 582.4,
+      "height": 514.56
+    }
   },
   "df7d26fbdaa1a87c15e2234f": {
     "name": "Veg chowmein",
@@ -445,7 +775,13 @@
     "src": "assets/menu-food/veg-chowmein-df7d26.webp",
     "source": "Nepali_vegetable_chowmein_plate_75aa1e51.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 53.46,
+      "y": 243.44,
+      "width": 654.08,
+      "height": 581.12
+    }
   },
   "7066e87d4673501dc9331986": {
     "name": "Mixed chowmein",
@@ -453,7 +789,13 @@
     "src": "assets/menu-food/mixed-chowmein-7066e8.webp",
     "source": "Nepali_mixed_chowmein_on_plate_e5971227.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 52.8,
+      "y": 221.06,
+      "width": 614.4,
+      "height": 602.88
+    }
   },
   "d74d898d89376693f50a8657": {
     "name": "Egg chowmein",
@@ -461,7 +803,13 @@
     "src": "assets/menu-food/egg-chowmein-d74d89.webp",
     "source": "Nepali_egg_chowmein_on_plate_adc362c8.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 37.0,
+      "y": 213.54,
+      "width": 640.0,
+      "height": 625.92
+    }
   },
   "8691c5bf81f4024fb1000f7e": {
     "name": "Masala milk tea",
@@ -469,7 +817,13 @@
     "src": "assets/menu-food/masala-milk-tea-8691c5.webp",
     "source": "Nepali_masala_milk_tea_in_64464c69.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 85.2,
+      "y": 191.7,
+      "width": 537.6,
+      "height": 633.6
+    }
   },
   "3c0d1b35579b6246d8e12628": {
     "name": "Milk tea",
@@ -477,7 +831,13 @@
     "src": "assets/menu-food/milk-tea-3c0d1b.webp",
     "source": "Nepali_milk_tea_in_glass_40267d76.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 45.26,
+      "y": 219.8,
+      "width": 628.48,
+      "height": 614.4
+    }
   },
   "dea52336d2cedc9900b7017b": {
     "name": "Black tea",
@@ -485,7 +845,13 @@
     "src": "assets/menu-food/black-tea-dea523.webp",
     "source": "Hot_black_tea_in_glass_a2f20c6e.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 25.34,
+      "y": 228.68,
+      "width": 600.32,
+      "height": 624.64
+    }
   },
   "2b9f78813053d23d82826267": {
     "name": "Lemon tea",
@@ -493,7 +859,13 @@
     "src": "assets/menu-food/lemon-tea-2b9f78.webp",
     "source": "Lemon_tea_in_glass_cup_fb4f679a.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 0,
+      "y": 209.18,
+      "width": 662.36,
+      "height": 656.64
+    }
   },
   "6f92083314d9a523c146709d": {
     "name": "Plain Lassi",
@@ -501,7 +873,13 @@
     "src": "assets/menu-food/plain-lassi-6f9208.webp",
     "source": "Glass_of_plain_lassi_516cf7c4.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 280.26,
+      "y": 105.6,
+      "width": 244.48,
+      "height": 780.8
+    }
   },
   "f5255fe02ef19f528617d529": {
     "name": "Sweet lassi",
@@ -509,7 +887,13 @@
     "src": "assets/menu-food/sweet-lassi-f5255f.webp",
     "source": "Glass_filled_with_sweet_lassi_d16651b9.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 202.92,
+      "y": 220.75,
+      "width": 348.16,
+      "height": 697.12
+    }
   },
   "23021436d4b5a17e4a86436e": {
     "name": "Mango lassi",
@@ -517,7 +901,13 @@
     "src": "assets/menu-food/mango-lassi-230214.webp",
     "source": "Glass_filled_with_mango_lassi_14aac45b.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 132.74,
+      "y": 56.24,
+      "width": 459.52,
+      "height": 903.76
+    }
   },
   "414a8b1ee9cc9ebd15f07989": {
     "name": "Banana lassi",
@@ -525,7 +915,13 @@
     "src": "assets/menu-food/banana-lassi-414a8b.webp",
     "source": "Glass_filled_with_banana_lassi_226d0b76.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 140.14,
+      "y": 76.78,
+      "width": 446.72,
+      "height": 861.44
+    }
   },
   "a63d5604144ce6e7a5916e5d": {
     "name": "Selroti",
@@ -533,7 +929,13 @@
     "src": "assets/menu-food/selroti-a63d56.webp",
     "source": "Selroti_stacked_on_plate_2da41bbb.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 92.04,
+      "y": 212.04,
+      "width": 529.92,
+      "height": 465.92
+    }
   },
   "494cf6d8f01bf01e57ec9415": {
     "name": "Selroti set",
@@ -541,6 +943,250 @@
     "src": "assets/menu-food/selroti-set-494cf6.webp",
     "source": "Nepali_selroti_breakfast_set_pre…_aedd39ff.jpg",
     "width": 717,
-    "height": 960
+    "height": 960,
+    "focus": {
+      "x": 82.74,
+      "y": 198.84,
+      "width": 587.52,
+      "height": 632.32
+    }
+  },
+  "ac32ff01efa986e1946ad237": {
+    "name": "Buff C.momo",
+    "category": "Momo",
+    "src": "assets/menu-food/buff-c-momo-ac32ff.webp",
+    "source": "Nepali_buffalo_momo_on_plate_88df5a17.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 78.26,
+      "y": 284.41,
+      "width": 564.48,
+      "height": 462.51
+    }
+  },
+  "95b975634e9cd856db316869": {
+    "name": "Chicken C.momo",
+    "category": "Momo",
+    "src": "assets/menu-food/chicken-c-momo-95b975.webp",
+    "source": "Nepali_Chicken_Momo_served_b4b9bf1f.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 58.08,
+      "y": 223.66,
+      "width": 611.84,
+      "height": 615.68
+    }
+  },
+  "161765de79e93fe296c8d4aa": {
+    "name": "Veg C.momo",
+    "category": "Momo",
+    "src": "assets/menu-food/veg-c-momo-161765.webp",
+    "source": "Nepali_veg_momo_served_on_c6f84e50.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 54.94,
+      "y": 252.76,
+      "width": 613.12,
+      "height": 468.48
+    }
+  },
+  "2f9ee652b5d896f26e0c8d6c": {
+    "name": "Buff kurkure momo",
+    "category": "Kurkure momo",
+    "src": "assets/menu-food/buff-kurkure-momo-2f9ee6.webp",
+    "source": "Fried_buffalo_momos_with_achar_13f180f4.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 48.78,
+      "y": 224.08,
+      "width": 605.44,
+      "height": 547.84
+    }
+  },
+  "5efabff218f211cfccce6ab4": {
+    "name": "Chicken kurkure momo",
+    "category": "Kurkure momo",
+    "src": "assets/menu-food/chicken-kurkure-momo-5efabf.webp",
+    "source": "Chicken_momos_with_dipping_sauce_ff2a65f2.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 26.58,
+      "y": 243.34,
+      "width": 690.42,
+      "height": 600.32
+    }
+  },
+  "fda118620b8acb0ba2da9ffd": {
+    "name": "Veg kurkure momo",
+    "category": "Kurkure momo",
+    "src": "assets/menu-food/veg-kurkure-momo-fda118.webp",
+    "source": "Fried_vegetable_momos_served_wit…_7e3335b5.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 51.38,
+      "y": 244.96,
+      "width": 618.24,
+      "height": 558.08
+    }
+  },
+  "c05ffc5fe01a0d4ab7ff7554": {
+    "name": "Coke",
+    "category": "COLD DRINKS",
+    "src": "assets/menu-food/coke-c05ffc.webp",
+    "source": "Glass_filled_with_cola_fa7c3ba6.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 123.76,
+      "y": 62.4,
+      "width": 468.48,
+      "height": 883.2
+    }
+  },
+  "59f18323ce2e0f00726ba58c": {
+    "name": "Fanta",
+    "category": "COLD DRINKS",
+    "src": "assets/menu-food/fanta-59f183.webp",
+    "source": "Orange_soda_in_glass_903449c6.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 150.64,
+      "y": 76.88,
+      "width": 414.72,
+      "height": 883.12
+    }
+  },
+  "0449f062cd1faf4eb7fdd2b5": {
+    "name": "Sprite",
+    "category": "COLD DRINKS",
+    "src": "assets/menu-food/sprite-0449f0.webp",
+    "source": "Glass_of_lemon-lime_soda_1af2346f.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 164.58,
+      "y": 52.64,
+      "width": 387.84,
+      "height": 907.36
+    }
+  },
+  "29797a8fd78bee95f3192a39": {
+    "name": "Egg",
+    "category": "Egg",
+    "src": "assets/menu-food/egg-29797a.webp",
+    "source": "Sliced_boiled_eggs_on_plate_e365099d.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 200.0,
+      "y": 302.34,
+      "width": 320.0,
+      "height": 472.32
+    }
+  },
+  "3121f7f320c4e2e1eda99417": {
+    "name": "Buff corn dog",
+    "category": "Snacks",
+    "src": "assets/menu-food/buff-corn-dog-3121f7.webp",
+    "source": "Two_corn_dogs_on_plate_2b7d1762.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 25.48,
+      "y": 297.63,
+      "width": 599.04,
+      "height": 403.51
+    }
+  },
+  "1d45c28edc9b7b3a832eb401": {
+    "name": "Special milk tea",
+    "category": "Tea",
+    "src": "assets/menu-food/special-milk-tea-1d45c2.webp",
+    "source": "Nepali_milk_chiya_in_cup_2ceb759c.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 148.52,
+      "y": 255.1,
+      "width": 424.96,
+      "height": 556.8
+    }
+  },
+  "920c9cd13cd9948ea650ae01": {
+    "name": "Local milk tea",
+    "category": "Tea",
+    "src": "assets/menu-food/local-milk-tea-920c9c.webp",
+    "source": "Nepali_milk_tea_in_glass_0b9a7399.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 99.86,
+      "y": 216.2,
+      "width": 513.28,
+      "height": 601.6
+    }
+  },
+  "d762573c891cd050f94157e6": {
+    "name": "Masala black tea",
+    "category": "Tea",
+    "src": "assets/menu-food/masala-black-tea-d76257.webp",
+    "source": "Glass_cup_holding_black_tea_3b9952a8.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 100.18,
+      "y": 240.08,
+      "width": 464.64,
+      "height": 547.84
+    }
+  },
+  "0d0ae56bdcf5630f6a7262e8": {
+    "name": "Hot lemon",
+    "category": "Tea",
+    "src": "assets/menu-food/hot-lemon-0d0ae5.webp",
+    "source": "Glass_cup_with_lemon_water_e769d902.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 38.72,
+      "y": 279.94,
+      "width": 642.56,
+      "height": 549.12
+    }
+  },
+  "a5a229856a31cf07b9cc0dab": {
+    "name": "Fresh lime soda (special )",
+    "category": "COLD DRINKS",
+    "src": "assets/menu-food/fresh-lime-soda-special-a5a229.webp",
+    "source": "Glass_of_lime_soda_24d5a777.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 167.42,
+      "y": 39.51,
+      "width": 380.16,
+      "height": 909.61
+    }
+  },
+  "c3b1109740480f3dd00c9f50": {
+    "name": "Hot lemon with honey and ginger",
+    "category": "Tea",
+    "src": "assets/menu-food/hot-lemon-with-honey-and-ginger-c3b110.webp",
+    "source": "Lemon_tea_in_glass_cup_f1173549.jpg",
+    "width": 717,
+    "height": 960,
+    "focus": {
+      "x": 66.92,
+      "y": 222.52,
+      "width": 540.16,
+      "height": 680.96
+    }
   }
 }
