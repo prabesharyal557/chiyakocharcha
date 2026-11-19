@@ -1252,5 +1252,13 @@
     "source": "images (17).jpg",
     "width": 554,
     "height": 554
+  },
+  "9a3428ad5f07aefd356b4f7d": {
+    "name": "Carlsberg beer",
+    "category": "BEER",
+    "src": "assets/menu-food/carlsberg-beer-user.webp",
+    "source": "Owner uploaded Carlsberg bottle",
+    "width": 399,
+    "height": 501
   }
 }
