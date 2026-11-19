@@ -1260,5 +1260,45 @@
     "source": "Owner uploaded Carlsberg bottle",
     "width": 399,
     "height": 501
+  },
+  "b3d5048e45554da68612820f": {
+    "name": "Surya lite",
+    "category": "Cigarette",
+    "src": "assets/menu-food/surya-lite-user.webp",
+    "source": "codex-clipboard-f7110a6d-a734-489e-a105-621273db9b46.png",
+    "width": 554,
+    "height": 554
+  },
+  "2c3c101d9922cedef169eee2": {
+    "name": "Surya lite",
+    "category": "Cigarette",
+    "src": "assets/menu-food/surya-lite-user.webp",
+    "source": "codex-clipboard-f7110a6d-a734-489e-a105-621273db9b46.png",
+    "width": 554,
+    "height": 554
+  },
+  "e323d6e341035408591d1d39": {
+    "name": "Old durbar quarter",
+    "category": "Whiskey",
+    "src": "assets/menu-food/old-durbar-quarter-user.webp",
+    "source": "images (11).jpg",
+    "width": 399,
+    "height": 501
+  },
+  "0e9a4e1685f60ea25be8161f": {
+    "name": "Old durbar half",
+    "category": "Wishkey",
+    "src": "assets/menu-food/old-durbar-large-user.webp",
+    "source": "images (12).jpg",
+    "width": 399,
+    "height": 501
+  },
+  "37480ea64531abc027b25996": {
+    "name": "Old durbar full",
+    "category": "Wishkey",
+    "src": "assets/menu-food/old-durbar-large-user.webp",
+    "source": "images (12).jpg",
+    "width": 399,
+    "height": 501
   }
 }
