@@ -16,16 +16,10 @@
   "671c0105eecd2e6c1b8b19e8": {
     "name": "Keema noodels",
     "category": "Noodles",
-    "src": "assets/menu-food/keema-noodels-671c01.webp",
-    "source": "Nepali-style_Keema_Noodles_photo…_115b9ddf.jpg",
-    "width": 717,
-    "height": 960,
-    "focus": {
-      "x": 64.62,
-      "y": 150.56,
-      "width": 652.38,
-      "height": 762.88
-    }
+    "src": "assets/menu-food/keema-noodles-owner.webp",
+    "source": "images (18).jpg",
+    "width": 262,
+    "height": 192
   },
   "7c748fae7ee07177896a5115": {
     "name": "Hakka noodles",
