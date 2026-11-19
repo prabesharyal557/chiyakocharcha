@@ -884,16 +884,10 @@
   "f5255fe02ef19f528617d529": {
     "name": "Sweet lassi",
     "category": "LASSI",
-    "src": "assets/menu-food/sweet-lassi-f5255f.webp",
-    "source": "Glass_filled_with_sweet_lassi_d16651b9.jpg",
-    "width": 717,
-    "height": 960,
-    "focus": {
-      "x": 202.92,
-      "y": 220.75,
-      "width": 348.16,
-      "height": 697.12
-    }
+    "src": "assets/menu-food/sweet-lassi-owner.webp",
+    "source": "codex-clipboard-0306e233-8db5-4b35-96ab-ac16fcfc28e1.png",
+    "width": 554,
+    "height": 554
   },
   "23021436d4b5a17e4a86436e": {
     "name": "Mango lassi",
