@@ -30,16 +30,10 @@
   "7c748fae7ee07177896a5115": {
     "name": "Hakka noodles",
     "category": "Noodles",
-    "src": "assets/menu-food/hakka-noodles-7c748f.webp",
-    "source": "Hakka_noodles_on_plate_4395b9f1.jpg",
-    "width": 717,
-    "height": 960,
-    "focus": {
-      "x": 82.72,
-      "y": 170.14,
-      "width": 634.28,
-      "height": 766.72
-    }
+    "src": "assets/menu-food/hakka-noodles-owner.webp",
+    "source": "codex-clipboard-bad86bb8-f278-4ebc-b373-2c1ef6d73729.png",
+    "width": 452,
+    "height": 678
   },
   "8a8ff14af26204e08de4dc19": {
     "name": "Chicken noodles",
