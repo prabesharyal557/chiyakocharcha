@@ -1188,5 +1188,69 @@
       "width": 540.16,
       "height": 680.96
     }
+  },
+  "0f799a0328c0aa4f6151554b": {
+    "name": "Gorkha beer",
+    "category": "BEER",
+    "src": "assets/menu-food/gorkha-beer-user.webp",
+    "source": "images (1).jpg",
+    "width": 387,
+    "height": 516
+  },
+  "cdfad7b667494cb5c0fc42d4": {
+    "name": "Tuborg beer",
+    "category": "BEER",
+    "src": "assets/menu-food/tuborg-beer-user.webp",
+    "source": "images (2).jpg",
+    "width": 447,
+    "height": 447
+  },
+  "33f6c9831dda26f95c3593c6": {
+    "name": "Shikhar ice",
+    "category": "Cigarette",
+    "src": "assets/menu-food/shikhar-ice-user.webp",
+    "source": "images (3).jpg",
+    "width": 554,
+    "height": 554
+  },
+  "6ea05a12e60e1361c8c4fd0c": {
+    "name": "Surya",
+    "category": "Cigarette",
+    "src": "assets/menu-food/surya-user.webp",
+    "source": "images (4).jpg",
+    "width": 554,
+    "height": 554
+  },
+  "86ba19f93fd112532c6a46c5": {
+    "name": "Khukuri Rum",
+    "category": "Rum",
+    "src": "assets/menu-food/khukuri-rum-user.webp",
+    "source": "images (10).jpg",
+    "width": 447,
+    "height": 447
+  },
+  "cbac23519fa9f0f4da755ee1": {
+    "name": "Buff thukpa",
+    "category": "Thukpa",
+    "src": "assets/menu-food/buff-thukpa-user.webp",
+    "source": "images (15).jpg",
+    "width": 264,
+    "height": 191
+  },
+  "c58821c21630d9b81fb7bf66": {
+    "name": "Chicken thupka",
+    "category": "Thukpa",
+    "src": "assets/menu-food/chicken-thukpa-user.webp",
+    "source": "images (16).jpg",
+    "width": 335,
+    "height": 597
+  },
+  "773e1317f56602e481fb9003": {
+    "name": "Veg thukpa",
+    "category": "Thukpa",
+    "src": "assets/menu-food/veg-thukpa-user.webp",
+    "source": "images (17).jpg",
+    "width": 554,
+    "height": 554
   }
 }
