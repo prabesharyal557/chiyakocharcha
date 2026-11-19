@@ -2,6 +2,7 @@
 (() => {
   const base='https://sajilo-restaurant.aryalprabesh300.workers.dev/api/public';
   const storage='charcha-basket';
+  if(location.pathname.endsWith('/menu.html')){history.scrollRestoration='manual';window.scrollTo(0,0)}
   const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const money=n=>'NPR '+Number(n).toLocaleString('en-NP',{minimumFractionDigits:2,maximumFractionDigits:2});
   let menu,photos={};
@@ -66,7 +67,7 @@
       document.getElementById('posCount').textContent=items.length+' items';
       fitPhotos();
     }
-    search.addEventListener('input',filter);category.addEventListener('change',filter);filter();renderMiniBag();
+    search.addEventListener('input',filter);category.addEventListener('change',()=>{filter();const controls=document.querySelector('.pos-controls');if(controls){const top=controls.getBoundingClientRect().top+window.scrollY-parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--mobile-header')||'0');window.scrollTo({top:Math.max(0,top),behavior:'smooth'})}});filter();renderMiniBag();
     document.getElementById('posStatus').textContent=(menu.open?'The café is accepting order requests.':'The café is closed for online orders.')+' Prices and availability from SajiloPOS. Tax is shown in your bag.';
   }
   function renderCheckout(){
