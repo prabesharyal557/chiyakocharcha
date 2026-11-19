@@ -74,16 +74,10 @@
   "61ca658bb09c1ad43f1afbf7": {
     "name": "Veg Fry rice",
     "category": "Rice",
-    "src": "assets/menu-food/veg-fry-rice-61ca65.webp",
-    "source": "Vegetable_fried_rice_on_plate_78236c48.jpg",
-    "width": 717,
-    "height": 960,
-    "focus": {
-      "x": 90.84,
-      "y": 190.7,
-      "width": 626.16,
-      "height": 697.6
-    }
+    "src": "assets/menu-food/veg-fry-rice-owner.webp",
+    "source": "codex-clipboard-3b1bc142-2a5e-4c51-90b8-8148240ebec5.png",
+    "width": 1024,
+    "height": 1024
   },
   "4f1bb80e0439ce0df2b2333c": {
     "name": "Mix Fry rice",
