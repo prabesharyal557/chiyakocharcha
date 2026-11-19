@@ -4,6 +4,8 @@ Active restaurant: **101**. POS: https://sajilo-restaurant.aryalprabesh300.worke
 
 The website reads `GET /api/public/menu` and sends requests to `POST /api/public/orders`, with `X-Sajilo-Restaurant: 101`. Only the Chiya ko Charcha website origin is permitted for browser writes. No staff token, password, ingredient cost or financial records are exposed to the website.
 
+The restaurant 101 customer QR menu now uses the website's matched food photos too. The Worker overlays photos only when a menu item's ID, name and category all match; other restaurants and unmatched menu items keep their existing QR photo or placeholder. Photo URLs point to the published website assets, so one confirmed photo assignment is reused in both menus.
+
 New website submissions automatically create normal, unpaid POS tickets in restaurant **101 only**. They appear in **Orders** and on a dedicated **Online Orders** table under **Tables**. The table is allocated at the next unused table number on the first successful new submission, retained across restarts and protected from deletion. Other restaurants are unaffected.
 
 The ticket, table configuration and website receipt are committed in one database batch. A retry with the same request ID returns the original receipt without creating another ticket. The current POS menu determines prices and ingredient costs. Stale totals and unavailable items are rejected before creating tickets. No payments or sales are automatically recorded.
@@ -16,7 +18,7 @@ The manager's Online orders inbox retains customer phone/address, links each new
 
 The current deployed POS is newer than `KitchenSystem` on GitHub. Publishing the older GitHub copy would discard existing platform, restaurant, QR, stock and finance features. The final integration therefore uses the existing working source at `D:/website/KitchenSystem`, not the older draft under `integrations/sajilo-pos`.
 
-This directory contains the three new modules and `current-pos.patch` for the existing Worker, manager app, service worker and asset-sync script. The updated source is also saved in the existing POS working copy. Existing unrelated working changes have been preserved. The complete POS working copy has not been committed or pushed as part of this task.
+This directory contains the integration modules, the verified QR photo map, and `current-pos.patch` for the existing Worker, manager app, service worker and asset-sync script. The updated source is also saved in the existing POS working copy. Existing unrelated working changes have been preserved. The complete POS working copy has not been committed or pushed as part of this task.
 
 ## Validation
 
